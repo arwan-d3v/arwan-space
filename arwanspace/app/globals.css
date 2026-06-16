@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@import "../styles/glassmorphism.css";
+
+@theme {
+  --font-sans: var(--font-inter);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, #b7e1fa 0%, #fdf6f0 50%, #fce4d6 100%);
+  min-height: 100vh;
+  color: #333;
+}
