@@ -48,11 +48,17 @@ export interface Reference {
 
 export interface Project {
   id: string;
-  name: string;
+  name: string;           // Keeping name for backward compatibility with older DBs if any, but mapping to title
+  title?: string;
   description: string;
-  technologies: string[];
-  imageUrl: string;
-  link: string;
+  technologies?: string[];// Keeping for backward compatibility
+  techStack?: string[];
+  imageUrl?: string;      // Keeping for backward compatibility
+  mediaUrls?: string[];
+  embedUrl?: string;
+  link?: string;          // Keeping for backward compatibility
+  liveUrl?: string;
+  repoUrl?: string;
 }
 
 export interface ResumeData {

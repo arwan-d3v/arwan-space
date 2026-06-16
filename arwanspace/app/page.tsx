@@ -5,7 +5,7 @@ import { ResumeData } from '@/types/resume';
 // Dummy data fallback
 const dummyResume: ResumeData = {
   id: "dummy-1",
-  profile_photo_url: "",
+  profile_photo_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop", // Public placeholder
   full_name: "Arwan",
   title: "Fullstack Developer & UI/UX Enthusiast",
   summary: "Passionate about creating beautiful, functional, and user-centric digital experiences. Bridging the gap between design and engineering.",
@@ -50,7 +50,7 @@ const dummyResume: ResumeData = {
       items: [
         { name: "Node.js", level: 85 },
         { name: "Supabase / PostgreSQL", level: 80 },
-        { name: "AWS / Vercel", level: 75 },
+        { name: "AWS / Cloudflare R2", level: 75 },
       ]
     }
   ],
@@ -60,10 +60,30 @@ const dummyResume: ResumeData = {
     {
       id: "proj-1",
       name: "GlassUI Framework",
-      description: "A comprehensive open-source CSS framework dedicated exclusively to glassmorphism design principles.",
-      technologies: ["CSS", "React", "TypeScript"],
-      imageUrl: "", // Left blank for dummy
-      link: "https://github.com"
+      title: "GlassUI Framework",
+      description: "A comprehensive open-source CSS framework dedicated exclusively to glassmorphism design principles. Includes pre-built components and utility classes for rapid prototyping.",
+      technologies: ["CSS", "React", "TypeScript", "Framer Motion"],
+      techStack: ["CSS", "React", "TypeScript", "Framer Motion"],
+      imageUrl: "https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80",
+      mediaUrls: [
+        "https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80",
+        "https://images.unsplash.com/photo-1555066931436-c73854d05580?w=800&q=80"
+      ],
+      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder rickroll
+      link: "https://glassui.example.com",
+      liveUrl: "https://glassui.example.com",
+      repoUrl: "https://github.com/example/glassui"
+    },
+    {
+      id: "proj-2",
+      name: "FinDash Pro",
+      title: "FinDash Pro",
+      description: "A real-time financial dashboard displaying cryptocurrency markets, stock indexes, and portfolio tracking with interactive charts and WebSocket integrations.",
+      techStack: ["Next.js", "Tailwind CSS", "Recharts", "Supabase"],
+      mediaUrls: [
+        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80"
+      ],
+      liveUrl: "https://findash.example.com",
     }
   ],
   current_projects: [],

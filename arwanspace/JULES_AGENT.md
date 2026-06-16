@@ -73,3 +73,37 @@ INSERT INTO resume (
 ### Rekomendasi Lanjutan:
 1. Ganti *placeholder* aset cloud di path yang ditentukan agar Background Parallax terlihat lebih hidup.
 2. Setelah integrasi DB berhasil, kita bisa bergeser ke Milestone 2 (halaman Login dengan sistem SSO & Public Dashboard).
+
+## Sesi 2 - Refinement Milestone 1 & Setup Awal Milestone 2
+
+### Tugas yang Dikerjakan:
+- [x] Memperbarui `types/resume.ts` untuk mendukung schema project yang lebih kaya (`mediaUrls`, `embedUrl`, `liveUrl`, dll).
+- [x] Membuat komponen `ProjectModal.tsx` dengan fitur carousel gambar dan iframe YouTube.
+- [x] Memperbarui `ProjectsSection.tsx` agar menampilkan indikator media dan membuka modal saat di-klik.
+- [x] Menggunakan URL public/dummy sementara (dari Unsplash dan YouTube) di data dummy untuk memperlihatkan kapabilitas modal.
+- [x] Membuat halaman Login (`/login`) menggunakan Glassmorphism dan terintegrasi dengan `supabase.auth.signInWithPassword`.
+- [x] Membuat Next.js Middleware (`middleware.ts`) untuk memproteksi rute `/dashboard`.
+- [x] Membuat halaman *placeholder* Member Dashboard (`/dashboard`) beserta fitur *Logout*.
+- [x] Membuat halaman Public Dashboard (`/explore`) dengan UI Glass Panel dan data *hardcoded* (Hosted Apps, Free Tools, Showcase, Stats).
+
+### Keputusan & Implementasi Teknis:
+1. **Modal Media Carousel**: Didesain agar mendukung perpindahan gambar dengan _keyboard_ / tombol dan langsung *render* <iframe> jika mendeteksi `embedUrl`.
+2. **Fallback Image**: Jika project tidak memiliki gambar, UI akan otomatis menampilkan area placeholder estetis dengan ikon.
+3. **Middleware Proteksi**: Menggunakan `@supabase/ssr` di `middleware.ts` untuk membaca *session* *cookie*. Jika user mencoba ke `/dashboard` tanpa *session*, akan di-*redirect* ke `/login`.
+
+### Instruksi Manual untuk Anda (Cloudflare R2 Preparation):
+Untuk sesi selanjutnya (Sesi 3), kita akan menggunakan **Cloudflare R2** sebagai *object storage*. Berikut persiapannya:
+
+1. Login ke [Cloudflare Dashboard](https://dash.cloudflare.com).
+2. Pergi ke menu **R2** > **Create bucket**. Beri nama `official-arwan-assets`.
+3. Setelah bucket terbuat, masuk ke tab **Settings** bucket tersebut.
+4. Pada bagian **Public Access** > **Custom Domains** atau **R2.dev subdomain**, pastikan akses publik diizinkan sehingga gambar bisa diakses tanpa otentikasi.
+5. Catat **Public Bucket URL**-nya (misalnya `https://pub-xxxxxx.r2.dev`).
+6. Kredensial (Access Key & Secret Key) yang Anda berikan sebelumnya di `.env.local` akan saya gunakan bersama `aws-sdk` di sesi berikutnya untuk membuat *API Upload*.
+
+### Kendala:
+- *Loading image hydration* dan *performance warning* bisa muncul saat memakai external URL yang belum masuk konfigurasi `next.config.ts`. (Akan diperbaiki otomatis saat kita mulai pakai _custom domain_ R2).
+
+### Rekomendasi Lanjutan (Milestone 3):
+1. Buat endpoint Next.js API `/api/upload` untuk mengunggah file langsung ke R2.
+2. Buat antarmuka CMS rahasia (di dalam `/dashboard`) agar Anda bisa mengubah konten resume tanpa perlu *query SQL*.
