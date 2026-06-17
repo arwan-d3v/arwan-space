@@ -42,7 +42,7 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: T
           </div>
 
           <p className="text-gray-700 italic leading-relaxed">
-            "{t.quote}"
+            &quot;{t.quote}&quot;
           </p>
         </GlassPanel>
       ))}

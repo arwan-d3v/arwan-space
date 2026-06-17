@@ -82,7 +82,7 @@ export default async function ServicesPage() {
   const supabase = await createClient();
 
   let templates = dummyTemplates;
-  let liveProjects = dummyLiveProjects;
+  const liveProjects = dummyLiveProjects;
   let testimonials = dummyTestimonials;
 
   try {

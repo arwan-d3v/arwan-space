@@ -18,7 +18,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
   // Reset index when project changes
   useEffect(() => {
     if (isOpen) {
-      setCurrentMediaIndex(0);
+      setTimeout(() => setCurrentMediaIndex(0), 0);
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';

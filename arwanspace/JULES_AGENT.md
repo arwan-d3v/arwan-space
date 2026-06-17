@@ -299,3 +299,17 @@ Jika Supabase Anda sudah live, Anda harus mengubah role akun Anda sendiri menjad
 UPDATE profiles SET role = 'superadmin' WHERE id = 'isi-dengan-user-id-anda-di-tabel-auth.users';
 ```
 *(Catatan: Dalam masa pengembangan ini, saya akan menyiapkan mock role di UI jika belum terhubung dengan Supabase).*
+
+## Sesi Tambahan - Fix Gateway & Parallax Background
+
+### Tugas yang Dikerjakan:
+- [x] Memperbaiki `BackgroundParallax.tsx` agar menggunakan tag `<img>` murni dan path yang spesifik ke `cloud1.png`, `cloud2.png`, `cloud3.png`.
+- [x] Mengatur `z-index` background paralaks ke `[-10]` agar tidak menimpa konten `GlassPanel`.
+- [x] Memindahkan route resume dari `/` menjadi `/resume`.
+- [x] Membuat Landing Page Gateway baru di `/` yang memiliki logo, tagline, dan dua tombol CTA (Continue Resume & I'm Member) sesuai wireframe.
+- [x] Memastikan linear gradient global aktif di body dan awan tetap bekerja saat di-*scroll*.
+
+### Instruksi Awan (Clouds):
+Untuk memastikan background paralaks berjalan di lokal Anda:
+1. Pastikan Anda memiliki gambar awan format PNG (dengan background transparan) di `public/assets/clouds/`.
+2. Nama filenya harus: `cloud1.png`, `cloud2.png`, dan `cloud3.png`. (Jika Anda menggunakan format nama lain seperti `cloud-1.png`, mohon *rename* filenya atau *update* referensinya di `app/components/BackgroundParallax.tsx`).

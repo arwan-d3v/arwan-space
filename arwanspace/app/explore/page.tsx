@@ -27,7 +27,7 @@ export default function ExplorePage() {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Arwan's Ecosystem</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Arwan&apos;s Ecosystem</h1>
             <p className="text-xl text-gray-600 max-w-2xl">
               Explore my hosted applications, open-source projects, and free tools available to the public.
             </p>

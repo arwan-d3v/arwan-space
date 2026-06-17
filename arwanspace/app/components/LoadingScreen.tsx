@@ -12,7 +12,7 @@ export default function LoadingScreen({ progress }: LoadingScreenProps) {
 
   useEffect(() => {
     // Smooth interpolation for the counter
-    let start = displayProgress;
+    const start = displayProgress;
     const end = progress;
     if (start === end) return;
 
