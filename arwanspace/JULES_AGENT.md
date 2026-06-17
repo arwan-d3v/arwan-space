@@ -313,3 +313,12 @@ UPDATE profiles SET role = 'superadmin' WHERE id = 'isi-dengan-user-id-anda-di-t
 Untuk memastikan background paralaks berjalan di lokal Anda:
 1. Pastikan Anda memiliki gambar awan format PNG (dengan background transparan) di `public/assets/clouds/`.
 2. Nama filenya harus: `cloud1.png`, `cloud2.png`, dan `cloud3.png`. (Jika Anda menggunakan format nama lain seperti `cloud-1.png`, mohon *rename* filenya atau *update* referensinya di `app/components/BackgroundParallax.tsx`).
+
+## Sesi Tambahan 2 - Koreksi Background Awan & Glassmorphism
+
+### Tugas yang Dikerjakan:
+- [x] Mengubah nama aset awan menjadi `cloud-pic1.png`, `cloud-pic2.png`, dan `cloud-pic3.png`.
+- [x] Memperbarui file `BackgroundParallax.tsx` agar menggunakan nama-nama file baru tersebut.
+- [x] Mengatur ulang `z-index` background paralaks ke `[-20]` agar awan benar-benar berada di lapisan paling belakang dan tidak mengganggu area interaksi/form.
+- [x] Memastikan CSS `backdrop-filter: blur(20px)` dan `-webkit-backdrop-filter: blur(20px)` sudah tertulis di `styles/glassmorphism.css` agar efek blur kaca terlihat tembus pandang terhadap background awan.
+- [x] Verifikasi bahwa `BackgroundParallax` hanya di-load di halaman publik: Gateway (`/`), Resume (`/resume`), Services (`/services`), Explore (`/explore`), dan Login (`/login`). Dashboard dan Admin tidak menggunakan ini karena beralih ke tema Neumorphism.
