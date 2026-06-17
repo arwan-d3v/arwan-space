@@ -198,3 +198,104 @@ NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/your-username
 4. **Calendly URL**: Buat akun [Calendly](https://calendly.com/), buat event type, dan copy URL public-nya.
 
 *(Catatan: Jika kredensial di atas kosong, aplikasi akan menggunakan mode mock/fallback yang sudah disiapkan).*
+
+## Sesi 4 - Sub-Milestone 4.1: RBAC, Neumorphism, dan R2 Upload
+
+### Tugas yang Dikerjakan:
+- [x] Instalasi `@aws-sdk/client-s3` untuk interaksi dengan Cloudflare R2.
+- [x] Membuat definisi tipe data TypeScript untuk tabel `profiles`, `plans`, `subscriptions`, `cv_projects`, dan `theme_configs` di `types/dashboard.ts`.
+- [x] Menyiapkan SQL script untuk struktur tabel baru.
+
+### Skema Database Milestone 4 (Jalankan di Supabase SQL Editor):
+
+```sql
+CREATE TABLE profiles (
+  id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  role TEXT DEFAULT 'public' CHECK (role IN ('public','student','pro','company','superadmin')),
+  full_name TEXT,
+  telegram_username TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Trigger untuk membuat profil otomatis
+CREATE OR REPLACE FUNCTION public.handle_new_user()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO public.profiles (id, role, full_name)
+  VALUES (new.id, 'public', new.raw_user_meta_data->>'full_name');
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+CREATE TRIGGER on_auth_user_created
+  AFTER INSERT ON auth.users
+  FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();
+
+CREATE TABLE plans (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT UNIQUE NOT NULL,
+  display_name TEXT NOT NULL,
+  price_monthly DECIMAL(10,2),
+  price_yearly DECIMAL(10,2),
+  features JSONB NOT NULL,
+  is_active BOOLEAN DEFAULT true
+);
+
+INSERT INTO plans (name, display_name, price_monthly, price_yearly, features) VALUES
+('student', 'Student', 3.00, 29.00, '{"max_cv":5, "themes":7, "layouts":5, "color_options":5, "custom_domain":false, "team_members":0, "stats":"basic", "support":"ai+email"}'),
+('pro', 'Pro', 10.00, 96.00, '{"max_cv":-1, "themes":27, "layouts":-1, "color_options":-1, "custom_domain":false, "team_members":0, "stats":"advanced", "support":"ai+chat"}'),
+('company', 'Company', 30.00, 288.00, '{"max_cv":-1, "themes":27, "layouts":-1, "color_options":-1, "custom_domain":true, "team_members":7, "stats":"advanced", "support":"priority"}');
+
+CREATE TABLE subscriptions (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE,
+  plan_id uuid REFERENCES plans(id),
+  status TEXT CHECK (status IN ('active','canceled','expired','trialing')),
+  billing_cycle TEXT CHECK (billing_cycle IN ('monthly','yearly')),
+  start_date TIMESTAMPTZ,
+  end_date TIMESTAMPTZ,
+  auto_renew BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE cv_projects (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE,
+  title TEXT,
+  data JSONB NOT NULL,
+  theme_id TEXT NOT NULL,
+  layout_id TEXT NOT NULL,
+  color_scheme JSONB,
+  public_slug TEXT UNIQUE,
+  custom_domain TEXT,
+  is_published BOOLEAN DEFAULT false,
+  views_count INT DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ
+);
+
+CREATE TABLE team_members (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  company_user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE,
+  member_user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE UNIQUE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE theme_configs (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT UNIQUE NOT NULL,
+  display_name TEXT NOT NULL,
+  colors JSONB NOT NULL,
+  layout_id TEXT NOT NULL,
+  preview_image_url TEXT,
+  is_active BOOLEAN DEFAULT true,
+  sort_order INT DEFAULT 0
+);
+```
+
+### Instruksi Setup Role Superadmin (Manual):
+Jika Supabase Anda sudah live, Anda harus mengubah role akun Anda sendiri menjadi `superadmin` secara manual agar bisa mengakses halaman `/admin`. Jalankan query ini di SQL editor Supabase:
+```sql
+UPDATE profiles SET role = 'superadmin' WHERE id = 'isi-dengan-user-id-anda-di-tabel-auth.users';
+```
+*(Catatan: Dalam masa pengembangan ini, saya akan menyiapkan mock role di UI jika belum terhubung dengan Supabase).*

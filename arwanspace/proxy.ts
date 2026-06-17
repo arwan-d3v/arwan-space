@@ -26,15 +26,32 @@ export default async function proxy(request: NextRequest) {
     }
   );
 
-  // Refresh session if expired - required for Server Components
   const { data: { session } } = await supabase.auth.getSession();
+  const path = request.nextUrl.pathname;
 
-  // Protect /dashboard routes
-  if (request.nextUrl.pathname.startsWith('/dashboard')) {
+  // Protect /dashboard and /admin routes
+  if (path.startsWith('/dashboard') || path.startsWith('/admin')) {
     if (!session) {
-      // Redirect to login if unauthenticated
       const loginUrl = new URL('/login', request.url);
       return NextResponse.redirect(loginUrl);
+    }
+
+    // Role verification logic
+    // In a real app, query the profiles table.
+    // For local dev, we mock based on email
+    let role = 'public';
+    const email = session.user.email || '';
+    if (email.includes('superadmin')) role = 'superadmin';
+    else if (email.includes('company')) role = 'company';
+    else if (email.includes('pro')) role = 'pro';
+    else if (email.includes('student')) role = 'student';
+    // If we have a local env var overriding it
+    if (process.env.MOCK_ROLE) role = process.env.MOCK_ROLE;
+
+    // Admin protection
+    if (path.startsWith('/admin') && role !== 'superadmin') {
+      const dashboardUrl = new URL('/dashboard', request.url);
+      return NextResponse.redirect(dashboardUrl);
     }
   }
 
@@ -43,13 +60,6 @@ export default async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * Feel free to modify this pattern to include more paths.
-     */
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }

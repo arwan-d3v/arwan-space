@@ -1,0 +1,50 @@
+/* Neumorphism Base Styles */
+.neum-bg {
+  background-color: #e0e5ec;
+}
+
+.neum-panel {
+  background-color: #e0e5ec;
+  border-radius: 20px;
+  box-shadow: 8px 8px 16px #b8bcc4, -8px -8px 16px #ffffff;
+}
+
+.neum-panel-sm {
+  background-color: #e0e5ec;
+  border-radius: 12px;
+  box-shadow: 5px 5px 10px #b8bcc4, -5px -5px 10px #ffffff;
+}
+
+.neum-inset {
+  background-color: #e0e5ec;
+  border-radius: 12px;
+  box-shadow: inset 5px 5px 10px #b8bcc4, inset -5px -5px 10px #ffffff;
+}
+
+.neum-button {
+  background-color: #e0e5ec;
+  border-radius: 12px;
+  box-shadow: 5px 5px 10px #b8bcc4, -5px -5px 10px #ffffff;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.neum-button:hover {
+  box-shadow: 3px 3px 6px #b8bcc4, -3px -3px 6px #ffffff;
+  transform: translateY(1px);
+}
+
+.neum-button:active {
+  box-shadow: inset 4px 4px 8px #b8bcc4, inset -4px -4px 8px #ffffff;
+  transform: translateY(2px);
+}
+
+.neum-text {
+  color: #4a5568;
+  text-shadow: 1px 1px 2px #ffffff;
+}
+
+.neum-text-accent {
+  color: #7ec8e3;
+  text-shadow: 1px 1px 2px #ffffff;
+}
