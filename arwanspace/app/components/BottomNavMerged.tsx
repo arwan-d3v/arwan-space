@@ -66,7 +66,7 @@ export default function BottomNavMerged({ sections }: BottomNavMergedProps) {
           <button
             key={section.id}
             onClick={() => scrollTo(section.id)}
-            className="p-2.5 rounded-full hover:bg-white/20 transition-colors text-gray-700 hover:text-gray-900 group relative"
+            className="p-2.5 rounded-full hover:bg-white/5 transition-colors text-slate-200 hover:text-white group relative"
             title={section.label}
           >
             {getIcon(section.id)}

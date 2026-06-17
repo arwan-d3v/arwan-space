@@ -15,7 +15,7 @@ export default function NeumButton({ children, className, active, ...props }: Ne
   return (
     <button
       className={cn(
-        "px-4 py-2 font-medium text-gray-600 transition-all focus:outline-none flex items-center justify-center gap-2",
+        "px-4 py-2 font-medium text-slate-300 transition-all focus:outline-none flex items-center justify-center gap-2",
         active ? "neum-inset text-[#7ec8e3]" : "neum-button",
         className
       )}

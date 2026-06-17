@@ -24,7 +24,7 @@ export default async function DashboardHome() {
   return (
     <div className="space-y-8">
       <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold text-gray-800">Welcome Back!</h2>
+        <h2 className="text-3xl font-bold text-slate-100">Welcome Back!</h2>
         {role === 'public' && (
           <Link href="/dashboard/upgrade">
             <NeumButton className="text-[#7ec8e3] font-bold">Upgrade Plan</NeumButton>
@@ -35,7 +35,7 @@ export default async function DashboardHome() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <NeumPanel className="p-6">
           <p className="text-sm font-semibold text-gray-500 uppercase">Your Plan</p>
-          <h3 className="text-2xl font-bold text-gray-800 uppercase">{role}</h3>
+          <h3 className="text-2xl font-bold text-slate-100 uppercase">{role}</h3>
           {role !== 'company' && role !== 'pro' && (
              <Link href="/dashboard/upgrade" className="text-sm text-[#7ec8e3] hover:underline mt-2 inline-block">View pricing</Link>
           )}
@@ -43,7 +43,7 @@ export default async function DashboardHome() {
 
         <NeumPanel className="p-6">
           <p className="text-sm font-semibold text-gray-500 uppercase">CVs Created</p>
-          <h3 className="text-2xl font-bold text-gray-800">
+          <h3 className="text-2xl font-bold text-slate-100">
             {limits.current} <span className="text-gray-500 text-lg">/ {limits.max}</span>
           </h3>
         </NeumPanel>
@@ -59,11 +59,11 @@ export default async function DashboardHome() {
 
       {/* Recent CVs Mock */}
       <NeumPanel className="p-8">
-        <h3 className="text-xl font-bold text-gray-800 mb-6">Recent Resumes</h3>
+        <h3 className="text-xl font-bold text-slate-100 mb-6">Recent Resumes</h3>
         <div className="space-y-4">
           <div className="flex justify-between items-center p-4 border border-gray-300 rounded-xl">
             <div>
-              <h4 className="font-bold text-gray-800">Frontend Dev Resume</h4>
+              <h4 className="font-bold text-slate-100">Frontend Dev Resume</h4>
               <p className="text-xs text-gray-500">Updated 2 days ago • Theme: Aurora</p>
             </div>
             <div className="flex gap-2">

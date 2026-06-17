@@ -43,7 +43,7 @@ export default function LoadingScreen({ progress }: LoadingScreenProps) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
     >
-      <div className="text-6xl font-bold text-gray-800 mb-8 font-mono">
+      <div className="text-6xl font-bold text-slate-100 mb-8 font-mono">
         {displayProgress}%
       </div>
       <div className="w-[300px] h-1 bg-gray-200/50 rounded-full overflow-hidden">

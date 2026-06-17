@@ -40,8 +40,8 @@ export default function HybridBooking() {
           <div className="w-16 h-16 bg-gradient-to-br from-[#b7e1fa] to-[#f7a072] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg rotate-3">
             <Calendar size={32} className="text-white" />
           </div>
-          <h3 className="text-2xl font-bold text-gray-800">Mari Berdiskusi</h3>
-          <p className="text-gray-600 text-sm mb-8">Pilih cara yang paling nyaman untuk menghubungi kami.</p>
+          <h3 className="text-2xl font-bold text-slate-100">Mari Berdiskusi</h3>
+          <p className="text-slate-300 text-sm mb-8">Pilih cara yang paling nyaman untuk menghubungi kami.</p>
 
           <button
             onClick={() => setActiveView('calendly')}
@@ -52,7 +52,7 @@ export default function HybridBooking() {
 
           <button
             onClick={() => setActiveView('manual')}
-            className="w-full py-4 bg-white/40 hover:bg-white/60 border border-white/60 text-gray-800 rounded-xl shadow-sm transition flex items-center justify-center gap-3 font-semibold backdrop-blur"
+            className="w-full py-4 bg-white/10 hover:bg-white/5 border border-white/20 text-slate-100 rounded-xl shadow-sm transition flex items-center justify-center gap-3 font-semibold backdrop-blur"
           >
             <MessageSquare size={20} /> Isi Form Manual
           </button>
@@ -62,9 +62,9 @@ export default function HybridBooking() {
       {activeView === 'calendly' && (
         <div className="w-full h-full flex flex-col min-h-[500px]">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="font-bold text-gray-800">Jadwalkan Pertemuan</h3>
-            <button onClick={() => setActiveView('selection')} className="p-2 hover:bg-white/20 rounded-full transition">
-              <X size={20} className="text-gray-600" />
+            <h3 className="font-bold text-slate-100">Jadwalkan Pertemuan</h3>
+            <button onClick={() => setActiveView('selection')} className="p-2 hover:bg-white/5 rounded-full transition">
+              <X size={20} className="text-slate-300" />
             </button>
           </div>
           <div className="flex-grow rounded-xl overflow-hidden bg-white">
@@ -82,9 +82,9 @@ export default function HybridBooking() {
       {activeView === 'manual' && (
         <div className="w-full max-w-md w-full">
           <div className="flex justify-between items-center mb-6">
-            <h3 className="text-xl font-bold text-gray-800">Form Kontak</h3>
-            <button onClick={() => setActiveView('selection')} className="p-2 hover:bg-white/20 rounded-full transition">
-              <X size={20} className="text-gray-600" />
+            <h3 className="text-xl font-bold text-slate-100">Form Kontak</h3>
+            <button onClick={() => setActiveView('selection')} className="p-2 hover:bg-white/5 rounded-full transition">
+              <X size={20} className="text-slate-300" />
             </button>
           </div>
 
@@ -98,24 +98,24 @@ export default function HybridBooking() {
           ) : (
             <form onSubmit={handleManualSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wider">Nama Lengkap</label>
+                <label className="block text-xs font-semibold text-slate-300 mb-1 uppercase tracking-wider">Nama Lengkap</label>
                 <input
                   type="text" required value={name} onChange={e => setName(e.target.value)}
-                  className="w-full px-4 py-3 bg-white/40 border border-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#7ec8e3] backdrop-blur"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#7ec8e3] backdrop-blur"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wider">Email</label>
+                <label className="block text-xs font-semibold text-slate-300 mb-1 uppercase tracking-wider">Email</label>
                 <input
                   type="email" required value={email} onChange={e => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-white/40 border border-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#7ec8e3] backdrop-blur"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#7ec8e3] backdrop-blur"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wider">Pesan / Kebutuhan</label>
+                <label className="block text-xs font-semibold text-slate-300 mb-1 uppercase tracking-wider">Pesan / Kebutuhan</label>
                 <textarea
                   required rows={4} value={message} onChange={e => setMessage(e.target.value)}
-                  className="w-full px-4 py-3 bg-white/40 border border-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#7ec8e3] backdrop-blur resize-none"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#7ec8e3] backdrop-blur resize-none"
                 />
               </div>
 

@@ -21,7 +21,7 @@ const mockPlans: Plan[] = [
 export default function PlansPage() {
   return (
     <div className="space-y-8">
-      <h2 className="text-3xl font-bold text-gray-800">Subscription Plans</h2>
+      <h2 className="text-3xl font-bold text-slate-100">Subscription Plans</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {mockPlans.map((plan) => (
@@ -30,13 +30,13 @@ export default function PlansPage() {
               <NeumButton className="p-2"><Edit size={16} /></NeumButton>
             </div>
 
-            <h3 className="text-2xl font-bold text-gray-800 mb-2 uppercase">{plan.display_name}</h3>
+            <h3 className="text-2xl font-bold text-slate-100 mb-2 uppercase">{plan.display_name}</h3>
             <div className="mb-6">
               <span className="text-3xl font-bold text-[#7ec8e3]">${plan.price_monthly}</span>
               <span className="text-gray-500">/mo</span>
             </div>
 
-            <div className="flex-grow space-y-4 text-sm text-gray-700">
+            <div className="flex-grow space-y-4 text-sm text-slate-200">
               <div className="flex justify-between border-b border-[#d1d8e0] pb-2">
                 <span className="font-medium">Max CVs</span>
                 <span>{plan.features.max_cv === -1 ? 'Unlimited' : plan.features.max_cv}</span>

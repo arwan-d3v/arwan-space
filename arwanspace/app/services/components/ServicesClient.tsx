@@ -50,8 +50,8 @@ export default function ServicesClient({ templates, liveProjects, testimonials }
         {/* Hero Section */}
         <section className="text-center">
           <GlassPanel className="p-12 max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Layanan & Solusi Digital</h1>
-            <p className="text-xl text-gray-600">Dari template siap pakai hingga aplikasi kustom untuk bisnis Anda.</p>
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">Layanan & Solusi Digital</h1>
+            <p className="text-xl text-slate-300">Dari template siap pakai hingga aplikasi kustom untuk bisnis Anda.</p>
           </GlassPanel>
         </section>
 
@@ -70,7 +70,7 @@ export default function ServicesClient({ templates, liveProjects, testimonials }
         {/* Testimonials */}
         {testimonials.length > 0 && (
           <section className="pt-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8 pl-4 border-l-4 border-yellow-400">Apa Kata Klien Kami</h2>
+            <h2 className="text-3xl font-bold text-slate-100 mb-8 pl-4 border-l-4 border-yellow-400">Apa Kata Klien Kami</h2>
             <TestimonialsCarousel testimonials={testimonials} />
           </section>
         )}
@@ -78,8 +78,8 @@ export default function ServicesClient({ templates, liveProjects, testimonials }
         {/* AI & Booking Section */}
         <section className="pt-16 pb-12">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Hubungi Kami</h2>
-            <p className="text-gray-600">Tanya AI Companion kami atau jadwalkan sesi konsultasi langsung.</p>
+            <h2 className="text-3xl font-bold text-slate-100 mb-4">Hubungi Kami</h2>
+            <p className="text-slate-300">Tanya AI Companion kami atau jadwalkan sesi konsultasi langsung.</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">

@@ -9,8 +9,8 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #94a3b8 0%, #cbd5e1 50%, #e2e8f0 100%);
+  background: linear-gradient(135deg, #09090b 0%, #1e1b4b 50%, #0f172a 100%);
   min-height: 100vh;
-  color: #0f172a;
+  color: #f8fafc;
 }
 @import "../styles/neumorphism.css";

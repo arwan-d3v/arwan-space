@@ -28,14 +28,14 @@ export default function UpgradePage() {
   return (
     <div className="space-y-12 pb-12">
       <div className="text-center pt-8">
-        <h2 className="text-4xl font-bold text-gray-800">Upgrade Your Plan</h2>
-        <p className="text-gray-600 mt-4 max-w-xl mx-auto">Unlock premium themes, advanced analytics, and custom domains to supercharge your personal branding.</p>
+        <h2 className="text-4xl font-bold text-slate-100">Upgrade Your Plan</h2>
+        <p className="text-slate-300 mt-4 max-w-xl mx-auto">Unlock premium themes, advanced analytics, and custom domains to supercharge your personal branding.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {plans.map(plan => (
           <NeumPanel key={plan.id} className="p-8 flex flex-col items-center text-center">
-            <h3 className="text-2xl font-bold text-gray-800 uppercase tracking-widest mb-4">{plan.name}</h3>
+            <h3 className="text-2xl font-bold text-slate-100 uppercase tracking-widest mb-4">{plan.name}</h3>
             <div className="mb-8 flex items-baseline justify-center">
               <span className="text-4xl font-bold text-[#7ec8e3]">${plan.price}</span>
               <span className="text-gray-500 ml-1">/mo</span>
@@ -43,7 +43,7 @@ export default function UpgradePage() {
 
             <ul className="space-y-4 mb-8 w-full text-left flex-grow">
               {plan.features.map((feat, i) => (
-                <li key={i} className="flex items-center gap-3 text-gray-600">
+                <li key={i} className="flex items-center gap-3 text-slate-300">
                   <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-500 shrink-0">
                     <Check size={12} strokeWidth={3} />
                   </div>

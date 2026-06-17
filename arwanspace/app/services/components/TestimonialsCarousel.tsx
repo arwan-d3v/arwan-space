@@ -18,16 +18,16 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: T
               <img
                 src={t.client_photo_url}
                 alt={t.client_name}
-                className="w-14 h-14 rounded-full object-cover border-2 border-white/50"
+                className="w-14 h-14 rounded-full object-cover border-2 border-white/10"
               />
             ) : (
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#7ec8e3] to-[#f7a072] flex items-center justify-center text-white font-bold text-xl border-2 border-white/50">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#7ec8e3] to-[#f7a072] flex items-center justify-center text-white font-bold text-xl border-2 border-white/10">
                 {t.client_name.charAt(0)}
               </div>
             )}
 
             <div>
-              <h4 className="text-gray-800 font-bold">{t.client_name}</h4>
+              <h4 className="text-slate-100 font-bold">{t.client_name}</h4>
               {t.client_company && <p className="text-sm text-gray-500">{t.client_company}</p>}
               <div className="flex gap-0.5 mt-1">
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -41,7 +41,7 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: T
             </div>
           </div>
 
-          <p className="text-gray-700 italic leading-relaxed">
+          <p className="text-slate-200 italic leading-relaxed">
             &quot;{t.quote}&quot;
           </p>
         </GlassPanel>

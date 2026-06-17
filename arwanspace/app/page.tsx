@@ -13,10 +13,10 @@ export default function GatewayPage() {
 
           {/* Logo & Tagline */}
           <div className="space-y-4">
-            <h1 className="text-5xl md:text-6xl font-extrabold text-gray-800 tracking-tight drop-shadow-sm">
+            <h1 className="text-5xl md:text-6xl font-extrabold text-slate-100 tracking-tight drop-shadow-sm">
               Arwan&apos;space
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 font-medium max-w-md mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-slate-200 font-medium max-w-md mx-auto leading-relaxed">
               Your Professional Hub & Digital Ecosystem
             </p>
           </div>
@@ -24,25 +24,25 @@ export default function GatewayPage() {
           {/* CTA Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
             <Link href="/resume" className="group">
-              <GlassPanel className="p-8 h-full flex flex-col items-center justify-center space-y-4 cursor-pointer hover:-translate-y-2 hover:shadow-xl hover:border-white/60 transition-all duration-300">
+              <GlassPanel className="p-8 h-full flex flex-col items-center justify-center space-y-4 cursor-pointer hover:-translate-y-2 hover:shadow-xl hover:border-white/20 transition-all duration-300">
                 <div className="w-16 h-16 rounded-full bg-[#b7e1fa]/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#b7e1fa] transition-all">
-                  <FileText className="w-8 h-8 text-gray-800" />
+                  <FileText className="w-8 h-8 text-slate-100" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-gray-800 mb-1">Resume</h2>
-                  <p className="text-sm text-gray-600 font-medium">Continue Explore</p>
+                  <h2 className="text-xl font-bold text-slate-100 mb-1">Resume</h2>
+                  <p className="text-sm text-slate-300 font-medium">Continue Explore</p>
                 </div>
               </GlassPanel>
             </Link>
 
             <Link href="/login" className="group">
-              <GlassPanel className="p-8 h-full flex flex-col items-center justify-center space-y-4 cursor-pointer hover:-translate-y-2 hover:shadow-xl hover:border-white/60 transition-all duration-300">
+              <GlassPanel className="p-8 h-full flex flex-col items-center justify-center space-y-4 cursor-pointer hover:-translate-y-2 hover:shadow-xl hover:border-white/20 transition-all duration-300">
                 <div className="w-16 h-16 rounded-full bg-[#f7a072]/40 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#f7a072]/80 transition-all">
-                  <User className="w-8 h-8 text-gray-800" />
+                  <User className="w-8 h-8 text-slate-100" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-gray-800 mb-1">I&apos;m Member</h2>
-                  <p className="text-sm text-gray-600 font-medium">Login SSO</p>
+                  <h2 className="text-xl font-bold text-slate-100 mb-1">I&apos;m Member</h2>
+                  <p className="text-sm text-slate-300 font-medium">Login SSO</p>
                 </div>
               </GlassPanel>
             </Link>
@@ -52,7 +52,7 @@ export default function GatewayPage() {
           <div className="pt-6 border-t border-white/20">
             <Link
               href="/explore"
-              className="inline-flex items-center gap-2 text-gray-700 font-semibold hover:text-[#f7a072] group transition-colors px-6 py-2 rounded-full hover:bg-white/30"
+              className="inline-flex items-center gap-2 text-slate-200 font-semibold hover:text-[#f7a072] group transition-colors px-6 py-2 rounded-full hover:bg-white/30"
             >
               Looking Arwan&apos;space ecosystem
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

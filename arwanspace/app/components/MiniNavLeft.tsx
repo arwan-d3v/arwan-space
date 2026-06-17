@@ -65,7 +65,7 @@ export default function MiniNavLeft({ sections }: MiniNavLeftProps) {
         >
           {/* Tooltip */}
           <GlassPanel className="absolute left-8 px-3 py-1.5 opacity-0 -translate-x-4 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-            <span className="text-sm whitespace-nowrap text-gray-800 font-medium">
+            <span className="text-sm whitespace-nowrap text-slate-100 font-medium">
               {section.label}
             </span>
           </GlassPanel>

@@ -19,8 +19,8 @@ export default function CategoryNav({ categories, activeCategory, onSelect }: Ca
             onClick={() => onSelect(cat.id)}
             className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap border ${
               activeCategory === cat.id
-                ? 'bg-white/60 border-white text-gray-900 shadow-md backdrop-blur-xl'
-                : 'bg-white/20 border-white/30 text-gray-700 hover:bg-white/40 backdrop-blur-md'
+                ? 'bg-white/5 border-white text-white shadow-md backdrop-blur-xl'
+                : 'bg-white/5 border-white/30 text-slate-200 hover:bg-white/10 backdrop-blur-md'
             }`}
           >
             {cat.label}

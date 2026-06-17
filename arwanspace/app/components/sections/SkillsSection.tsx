@@ -8,15 +8,15 @@ export default function SkillsSection({ skills }: { skills: Skill[] }) {
 
   return (
     <section id="skills" className="reveal scroll-mt-24">
-      <h2 className="text-3xl font-bold text-gray-800 mb-8 pl-4 border-l-4 border-[#b7e1fa]">Skills & Expertise</h2>
+      <h2 className="text-3xl font-bold text-slate-100 mb-8 pl-4 border-l-4 border-[#b7e1fa]">Skills & Expertise</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {skills.map((skillGroup) => (
           <GlassPanel key={skillGroup.id} className="p-6">
-            <h3 className="text-lg font-bold text-gray-800 mb-6 uppercase tracking-wider text-sm">{skillGroup.category}</h3>
+            <h3 className="text-lg font-bold text-slate-100 mb-6 uppercase tracking-wider text-sm">{skillGroup.category}</h3>
             <div className="space-y-5">
               {skillGroup.items.map((skill) => (
                 <div key={skill.name}>
-                  <div className="flex justify-between text-sm mb-1.5 font-medium text-gray-700">
+                  <div className="flex justify-between text-sm mb-1.5 font-medium text-slate-200">
                     <span>{skill.name}</span>
                     <span>{skill.level}%</span>
                   </div>

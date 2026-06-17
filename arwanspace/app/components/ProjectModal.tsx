@@ -114,7 +114,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                             {mediaUrls.map((_, idx) => (
                               <div
                                 key={idx}
-                                className={`w-2 h-2 rounded-full transition-all ${idx === currentMediaIndex ? 'bg-white scale-125' : 'bg-white/40'}`}
+                                className={`w-2 h-2 rounded-full transition-all ${idx === currentMediaIndex ? 'bg-white scale-125' : 'bg-white/10'}`}
                               />
                             ))}
                           </div>
@@ -175,7 +175,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                               href={project.repoUrl}
                               target="_blank"
                               rel="noreferrer"
-                              className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-lg transition-colors"
+                              className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/5 border border-white/20 text-white rounded-lg transition-colors"
                             >
                               <GithubIcon size={18} />
                               <span>Source Code</span>

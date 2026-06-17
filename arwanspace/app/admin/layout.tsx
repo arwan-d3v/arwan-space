@@ -17,7 +17,7 @@ const ADMIN_MENU = [
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex h-screen neum-bg overflow-hidden text-gray-700 font-sans">
+    <div className="flex h-screen neum-bg overflow-hidden text-slate-200 font-sans">
       <aside className="w-64 flex-shrink-0 neum-panel rounded-none border-r border-gray-300 z-10 flex flex-col">
         <div className="p-6">
           <h1 className="text-xl font-bold neum-text-accent tracking-wider">COMMAND CENTER</h1>

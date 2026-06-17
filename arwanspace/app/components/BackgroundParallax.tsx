@@ -12,7 +12,6 @@ const CLOUDS = [
 export default function BackgroundParallax() {
   const [scrollY, setScrollY] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -35,46 +34,31 @@ export default function BackgroundParallax() {
     };
   }, []);
 
-  const handleImageError = (id: number) => {
-    setImageErrors(prev => ({ ...prev, [id]: true }));
-  };
-
   return (
     <div className="fixed inset-0 pointer-events-none z-[-20] overflow-hidden">
       {CLOUDS.map((cloud) => {
         const yOffset = scrollY * cloud.speedY * -1;
         const xOffset = mousePos.x * cloud.speedX * 50;
         const myOffset = mousePos.y * cloud.speedY * 50;
-        const hasError = imageErrors[cloud.id];
 
-        const style = {
-          left: `${cloud.initialX}%`,
-          top: `${cloud.initialY}%`,
-          width: `${cloud.width}px`,
-          height: hasError ? `${cloud.width}px` : 'auto',
-          opacity: cloud.opacity,
-          transform: `translate3d(calc(-50% + ${xOffset}px), calc(-50% + ${yOffset + myOffset}px), 0)`,
-        };
-
-        if (hasError) {
-          return (
-            <div
-              key={cloud.id}
-              className="absolute rounded-full bg-white/70 blur-[60px] transition-transform duration-300 ease-out"
-              style={style}
-            />
-          );
-        }
+        let gradient = 'bg-white/70';
+        if (cloud.id === 1) gradient = 'bg-gradient-to-tr from-pink-500 to-orange-400';
+        else if (cloud.id === 2) gradient = 'bg-gradient-to-tr from-cyan-400 to-blue-500';
+        else if (cloud.id === 3) gradient = 'bg-gradient-to-tr from-purple-500 to-pink-500';
+        else if (cloud.id === 4) gradient = 'bg-gradient-to-tr from-yellow-400 to-orange-500';
 
         return (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
+          <div
             key={cloud.id}
-            src={cloud.src}
-            alt="cloud"
-            onError={() => handleImageError(cloud.id)}
-            className="absolute transition-transform duration-300 ease-out drop-shadow-xl object-contain"
-            style={style}
+            className={`absolute rounded-full ${gradient} blur-[40px] mix-blend-screen transition-transform duration-300 ease-out`}
+            style={{
+              left: `${cloud.initialX}%`,
+              top: `${cloud.initialY}%`,
+              width: `${cloud.width}px`,
+              height: `${cloud.width}px`,
+              opacity: 0.9,
+              transform: `translate3d(calc(-50% + ${xOffset}px), calc(-50% + ${yOffset + myOffset}px), 0)`,
+            }}
           />
         );
       })}

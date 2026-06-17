@@ -13,7 +13,7 @@ export default function ProjectsSection({ projects, title, id }: { projects: Pro
 
   return (
     <section id={id} className="reveal scroll-mt-24">
-      <h2 className="text-3xl font-bold text-gray-800 mb-8 pl-4 border-l-4 border-gray-400">{title}</h2>
+      <h2 className="text-3xl font-bold text-slate-100 mb-8 pl-4 border-l-4 border-gray-400">{title}</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project) => {
@@ -47,7 +47,7 @@ export default function ProjectsSection({ projects, title, id }: { projects: Pro
 
                 {/* Overlay on hover */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                  <span className="text-white font-medium px-6 py-2 border border-white/50 rounded-full bg-black/20 backdrop-blur-md">
+                  <span className="text-white font-medium px-6 py-2 border border-white/10 rounded-full bg-black/20 backdrop-blur-md">
                     View Details
                   </span>
                 </div>
@@ -70,7 +70,7 @@ export default function ProjectsSection({ projects, title, id }: { projects: Pro
               <div className="p-6 flex flex-col flex-grow">
                 <div className="flex justify-between items-start mb-3 gap-4">
                   <h3
-                    className="text-xl font-bold text-gray-800 group-hover:text-[#f7a072] transition-colors"
+                    className="text-xl font-bold text-slate-100 group-hover:text-[#f7a072] transition-colors"
                     onClick={() => setSelectedProject(project)}
                   >
                     {displayTitle}
@@ -90,7 +90,7 @@ export default function ProjectsSection({ projects, title, id }: { projects: Pro
                 </div>
 
                 <p
-                  className="text-gray-600 text-sm mb-6 flex-grow line-clamp-3"
+                  className="text-slate-300 text-sm mb-6 flex-grow line-clamp-3"
                   onClick={() => setSelectedProject(project)}
                 >
                   {project.description}
@@ -98,7 +98,7 @@ export default function ProjectsSection({ projects, title, id }: { projects: Pro
 
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {techStack.slice(0, 4).map(tech => (
-                    <span key={tech} className="text-xs font-medium text-gray-600 bg-white/50 px-2.5 py-1 rounded-md border border-white/40 shadow-sm">
+                    <span key={tech} className="text-xs font-medium text-slate-300 bg-white/50 px-2.5 py-1 rounded-md border border-white/40 shadow-sm">
                       {tech}
                     </span>
                   ))}

@@ -48,8 +48,8 @@ export default function LoginPage() {
       <div className="w-full max-w-md relative z-10">
         <GlassPanel className="p-8 md:p-10">
           <div className="mb-8 text-center">
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h1>
-            <p className="text-gray-600 text-sm">Sign in to access your member dashboard</p>
+            <h1 className="text-3xl font-bold text-slate-100 mb-2">Welcome Back</h1>
+            <p className="text-slate-300 text-sm">Sign in to access your member dashboard</p>
           </div>
 
           {error && (
@@ -60,25 +60,25 @@ export default function LoginPage() {
 
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700 block">Email Address</label>
+              <label className="text-sm font-medium text-slate-200 block">Email Address</label>
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 bg-white/20 border border-white/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#7ec8e3] focus:bg-white/40 transition-all placeholder:text-gray-400"
+                className="w-full px-4 py-3 bg-white/5 border border-white/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#7ec8e3] focus:bg-white/10 transition-all placeholder:text-gray-400"
                 placeholder="hello@example.com"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700 block">Password</label>
+              <label className="text-sm font-medium text-slate-200 block">Password</label>
               <input
                 type="password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 bg-white/20 border border-white/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#7ec8e3] focus:bg-white/40 transition-all placeholder:text-gray-400"
+                className="w-full px-4 py-3 bg-white/5 border border-white/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#7ec8e3] focus:bg-white/10 transition-all placeholder:text-gray-400"
                 placeholder="••••••••"
               />
             </div>
@@ -102,7 +102,7 @@ export default function LoginPage() {
           <div className="mt-8 pt-6 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
             <Link
               href="/"
-              className="flex items-center gap-1.5 text-gray-600 hover:text-gray-900 transition-colors"
+              className="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors"
             >
               <ArrowLeft size={16} /> Back to Gateway
             </Link>

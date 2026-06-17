@@ -13,8 +13,8 @@ export default function ThemesSelection() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-3xl font-bold text-gray-800">Select a Theme</h2>
-        <p className="text-gray-600 mt-2">Showing {availableThemes.length} themes available for your {role} plan.</p>
+        <h2 className="text-3xl font-bold text-slate-100">Select a Theme</h2>
+        <p className="text-slate-300 mt-2">Showing {availableThemes.length} themes available for your {role} plan.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -43,7 +43,7 @@ export default function ThemesSelection() {
             </div>
             <div className="flex justify-between items-center px-2">
               <div>
-                <h3 className="font-bold text-gray-800">{theme.display_name}</h3>
+                <h3 className="font-bold text-slate-100">{theme.display_name}</h3>
                 <p className="text-xs text-gray-500 uppercase">{theme.layout_id} layout</p>
               </div>
             </div>

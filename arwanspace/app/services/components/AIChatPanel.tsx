@@ -99,8 +99,8 @@ export default function AIChatPanel() {
           <Bot size={24} />
         </div>
         <div>
-          <h3 className="font-bold text-gray-800">AI Companion</h3>
-          <p className="text-xs text-gray-600">Selalu siap membantu Anda</p>
+          <h3 className="font-bold text-slate-100">AI Companion</h3>
+          <p className="text-xs text-slate-300">Selalu siap membantu Anda</p>
         </div>
       </div>
 
@@ -110,7 +110,7 @@ export default function AIChatPanel() {
             <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 ${
               msg.role === 'user'
                 ? 'bg-gray-800 text-white rounded-tr-sm'
-                : 'bg-white/40 text-gray-800 border border-white/50 rounded-tl-sm'
+                : 'bg-white/10 text-slate-100 border border-white/10 rounded-tl-sm'
             }`}>
               <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
             </div>
@@ -119,7 +119,7 @@ export default function AIChatPanel() {
 
         {isLoading && (
           <div className="flex justify-start">
-            <div className="bg-white/40 text-gray-800 border border-white/50 rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-2">
+            <div className="bg-white/10 text-slate-100 border border-white/10 rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-2">
               <span className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" />
               <span className="w-2 h-2 bg-gray-500 rounded-full animate-bounce delay-100" />
               <span className="w-2 h-2 bg-gray-500 rounded-full animate-bounce delay-200" />
@@ -129,22 +129,22 @@ export default function AIChatPanel() {
 
         {showForm && formStatus !== 'success' && (
           <GlassPanel className="p-4 bg-white/30 border-[#f7a072]/30 mt-4">
-            <h4 className="text-sm font-bold text-gray-800 mb-2">Silakan isi data untuk mendapatkan penawaran:</h4>
+            <h4 className="text-sm font-bold text-slate-100 mb-2">Silakan isi data untuk mendapatkan penawaran:</h4>
             <form onSubmit={handleFormSubmit} className="space-y-3">
               <input
                 type="text" required placeholder="Nama Lengkap"
                 value={name} onChange={e => setName(e.target.value)}
-                className="w-full px-3 py-2 text-sm bg-white/40 border border-white/50 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#f7a072]"
+                className="w-full px-3 py-2 text-sm bg-white/10 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#f7a072]"
               />
               <input
                 type="email" required placeholder="Email Address"
                 value={email} onChange={e => setEmail(e.target.value)}
-                className="w-full px-3 py-2 text-sm bg-white/40 border border-white/50 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#f7a072]"
+                className="w-full px-3 py-2 text-sm bg-white/10 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#f7a072]"
               />
               <input
                 type="text" placeholder="Username Telegram (@...)"
                 value={telegram} onChange={e => setTelegram(e.target.value)}
-                className="w-full px-3 py-2 text-sm bg-white/40 border border-white/50 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#f7a072]"
+                className="w-full px-3 py-2 text-sm bg-white/10 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#f7a072]"
               />
               <button
                 type="submit" disabled={formStatus === 'loading'}
@@ -174,7 +174,7 @@ export default function AIChatPanel() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Tanyakan apa saja..."
-            className="w-full px-4 py-3 pr-12 bg-white/40 border border-white/50 rounded-full focus:outline-none focus:ring-2 focus:ring-[#7ec8e3] text-sm"
+            className="w-full px-4 py-3 pr-12 bg-white/10 border border-white/10 rounded-full focus:outline-none focus:ring-2 focus:ring-[#7ec8e3] text-sm"
           />
           <button
             type="submit"
