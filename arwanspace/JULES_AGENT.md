@@ -348,3 +348,12 @@ Untuk memastikan background paralaks berjalan di lokal Anda:
 - [x] Mengecek file gambar awan `cloud-pic1.png`, `cloud-pic2.png`, dan `cloud-pic3.png` yang ternyata isinya file HTML (hasil salah download).
 - [x] Membuat script Python untuk men-generate gambar awan transparan secara lokal menggunakan pustaka Pillow (memperbaiki file yang corrupted).
 - [x] Memastikan file baru berformat PNG asli dengan warna dan transparansi yang tepat, sehingga efek parallax dan glassmorphism dapat merender dengan baik.
+
+## Sesi Tambahan 4 - Resume Layout Redesign (Future UI Trends)
+### Tugas yang Dikerjakan:
+- [x] Mengubah layout halaman `/resume` dengan mengintegrasikan gaya UI masa depan: Glassmorphism, Liquid Glass, dan Adaptive Claymorphism.
+- [x] Membuat file CSS baru `styles/claymorphism.css` untuk efek *3D puffy inner shadows* pada card (grid items) dan file `styles/liquidglass.css` untuk efek refraksi transparan pada navbar.
+- [x] Mendesain ulang Navbar menjadi `LiquidNavbar.tsx` yang dipasang `fixed` di atas dan menyajikan estetika kaca cair.
+- [x] Memperbarui struktur grid (Adaptive Claymorphism) di setiap resume section (`SkillsSection`, `ExperienceSection`, `EducationSection`, `ProjectsSection`, `HobbiesSection`, `SocialSection`, `HeaderSection`) menggunakan `clay-card` sementara pembungkus luarnya mempertahankan efek `GlassPanel`.
+- [x] Menyesuaikan tema cahaya di `globals.css` (latar putih terang) dan mengubah blending mode di `BackgroundParallax.tsx` (menjadi `mix-blend-multiply` dengan opasitas awan yang disesuaikan) agar pas dengan tema modern light.
+- [x] Menjaga sistem tetap responsif serta memastikan halaman lain (non-resume) tidak terpengaruh oleh restrukturisasi komponen Resume.

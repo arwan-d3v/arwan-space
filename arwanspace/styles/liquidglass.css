@@ -1,0 +1,28 @@
+/* Liquid Glass Navbar Styles */
+.liquid-nav {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 9999px; /* highly rounded */
+  box-shadow:
+    0 10px 30px rgba(183, 225, 250, 0.3), /* glacier blue shadow */
+    inset 0 4px 6px rgba(255, 255, 255, 0.8), /* high reflection top */
+    inset 0 -4px 6px rgba(255, 255, 255, 0.2); /* glossy bottom */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add a glossy shine effect */
+.liquid-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 40%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+  border-radius: 9999px;
+  pointer-events: none;
+}

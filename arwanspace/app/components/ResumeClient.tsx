@@ -6,6 +6,7 @@ import LoadingScreen from './LoadingScreen';
 import BackgroundParallax from './BackgroundParallax';
 import MiniNavLeft from './MiniNavLeft';
 import BottomNavMerged from './BottomNavMerged';
+import LiquidNavbar from './LiquidNavbar';
 
 // Sections
 import HeaderSection from './sections/HeaderSection';
@@ -121,9 +122,11 @@ export default function ResumeClient({ resume }: { resume: ResumeData }) {
 
       {!isLoading && (
         <>
+          <LiquidNavbar />
           <MiniNavLeft sections={sections} />
 
-          <main className="relative z-10 max-w-5xl mx-auto px-4 md:px-12 py-20 space-y-24">
+          {/* Added pt-32 to account for the fixed LiquidNavbar */}
+          <main className="relative z-10 max-w-5xl mx-auto px-4 md:px-12 pt-32 pb-20 space-y-24">
             <HeaderSection data={resume} />
             <ExperienceSection experiences={resume.experience} />
             <EducationSection education={resume.education} />
