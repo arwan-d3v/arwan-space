@@ -3,6 +3,7 @@
 ## Sesi 1 - Setup Milestone 1: Halaman Resume
 
 ### Tugas yang Dikerjakan:
+
 - [x] Setup proyek Next.js + TailwindCSS + Framer Motion + Supabase SSR.
 - [x] Konfigurasi environment variables lokal (`.env.local`).
 - [x] Implementasi TypeScript Interfaces untuk skema JSONB.
@@ -19,10 +20,10 @@ Agar halaman tampil sempurna, ada beberapa langkah manual yang harus Anda lakuka
 
 1. **Aset Awan Parallax**:
    Saya telah mengatur `BackgroundParallax.tsx` untuk mencari gambar di path berikut:
-   - `/public/assets/clouds/cloud1.png`
-   - `/public/assets/clouds/cloud2.png`
-   - `/public/assets/clouds/cloud3.png`
-   Silakan buat folder tersebut dan masukkan gambar PNG berlatar transparan. Jika belum ada, sistem akan menampilkan bentuk _blur_ bundar sebagai _placeholder_.
+   - `/public/assets/clouds/cloud-pic1.png`
+   - `/public/assets/clouds/cloud-pic2.png`
+   - `/public/assets/clouds/cloud-pic3.png`
+     Silakan buat folder tersebut dan masukkan gambar PNG berlatar transparan. Jika belum ada, sistem akan menampilkan bentuk _blur_ bundar sebagai _placeholder_.
 
 2. **Supabase Database**:
    Anda harus menghubungkan URL dan Anon Key asli Anda ke dalam `.env.local`. Setelah itu, jalankan SQL query berikut di SQL Editor Supabase Anda untuk membuat tabel dan data awalnya:
@@ -65,52 +66,60 @@ INSERT INTO resume (
 ```
 
 ### Keputusan/Kendala:
+
 - Memilih **Vanilla CSS untuk struktur dasar glassmorphism** agar performa lebih ringan dan browser caching lebih optimal.
 - Menggunakan **Framer Motion khusus pada `LoadingScreen`** agar animasi progress bar linear dan opacity transisi di akhir lebih mulus.
-- Waktu *loading* diatur menjadi **kombinasi asset loading + minimum threshold 2 detik**, jadi animasinya dipastikan tidak sekadar berkedip.
+- Waktu _loading_ diatur menjadi **kombinasi asset loading + minimum threshold 2 detik**, jadi animasinya dipastikan tidak sekadar berkedip.
 - Komponen dibongkar per-section agar file tidak terlalu besar dan _maintenance_ lebih mudah ke depannya.
 
 ### Rekomendasi Lanjutan:
-1. Ganti *placeholder* aset cloud di path yang ditentukan agar Background Parallax terlihat lebih hidup.
+
+1. Ganti _placeholder_ aset cloud di path yang ditentukan agar Background Parallax terlihat lebih hidup.
 2. Setelah integrasi DB berhasil, kita bisa bergeser ke Milestone 2 (halaman Login dengan sistem SSO & Public Dashboard).
 
 ## Sesi 2 - Refinement Milestone 1 & Setup Awal Milestone 2
 
 ### Tugas yang Dikerjakan:
+
 - [x] Memperbarui `types/resume.ts` untuk mendukung schema project yang lebih kaya (`mediaUrls`, `embedUrl`, `liveUrl`, dll).
 - [x] Membuat komponen `ProjectModal.tsx` dengan fitur carousel gambar dan iframe YouTube.
 - [x] Memperbarui `ProjectsSection.tsx` agar menampilkan indikator media dan membuka modal saat di-klik.
 - [x] Menggunakan URL public/dummy sementara (dari Unsplash dan YouTube) di data dummy untuk memperlihatkan kapabilitas modal.
 - [x] Membuat halaman Login (`/login`) menggunakan Glassmorphism dan terintegrasi dengan `supabase.auth.signInWithPassword`.
 - [x] Membuat Next.js Middleware (`middleware.ts`) untuk memproteksi rute `/dashboard`.
-- [x] Membuat halaman *placeholder* Member Dashboard (`/dashboard`) beserta fitur *Logout*.
-- [x] Membuat halaman Public Dashboard (`/explore`) dengan UI Glass Panel dan data *hardcoded* (Hosted Apps, Free Tools, Showcase, Stats).
+- [x] Membuat halaman _placeholder_ Member Dashboard (`/dashboard`) beserta fitur _Logout_.
+- [x] Membuat halaman Public Dashboard (`/explore`) dengan UI Glass Panel dan data _hardcoded_ (Hosted Apps, Free Tools, Showcase, Stats).
 
 ### Keputusan & Implementasi Teknis:
-1. **Modal Media Carousel**: Didesain agar mendukung perpindahan gambar dengan _keyboard_ / tombol dan langsung *render* <iframe> jika mendeteksi `embedUrl`.
+
+1. **Modal Media Carousel**: Didesain agar mendukung perpindahan gambar dengan _keyboard_ / tombol dan langsung _render_ <iframe> jika mendeteksi `embedUrl`.
 2. **Fallback Image**: Jika project tidak memiliki gambar, UI akan otomatis menampilkan area placeholder estetis dengan ikon.
-3. **Middleware Proteksi**: Menggunakan `@supabase/ssr` di `middleware.ts` untuk membaca *session* *cookie*. Jika user mencoba ke `/dashboard` tanpa *session*, akan di-*redirect* ke `/login`.
+3. **Middleware Proteksi**: Menggunakan `@supabase/ssr` di `middleware.ts` untuk membaca _session_ _cookie_. Jika user mencoba ke `/dashboard` tanpa _session_, akan di-_redirect_ ke `/login`.
 
 ### Instruksi Manual untuk Anda (Cloudflare R2 Preparation):
-Untuk sesi selanjutnya (Sesi 3), kita akan menggunakan **Cloudflare R2** sebagai *object storage*. Berikut persiapannya:
+
+Untuk sesi selanjutnya (Sesi 3), kita akan menggunakan **Cloudflare R2** sebagai _object storage_. Berikut persiapannya:
 
 1. Login ke [Cloudflare Dashboard](https://dash.cloudflare.com).
 2. Pergi ke menu **R2** > **Create bucket**. Beri nama `official-arwan-assets`.
 3. Setelah bucket terbuat, masuk ke tab **Settings** bucket tersebut.
 4. Pada bagian **Public Access** > **Custom Domains** atau **R2.dev subdomain**, pastikan akses publik diizinkan sehingga gambar bisa diakses tanpa otentikasi.
 5. Catat **Public Bucket URL**-nya (misalnya `https://pub-xxxxxx.r2.dev`).
-6. Kredensial (Access Key & Secret Key) yang Anda berikan sebelumnya di `.env.local` akan saya gunakan bersama `aws-sdk` di sesi berikutnya untuk membuat *API Upload*.
+6. Kredensial (Access Key & Secret Key) yang Anda berikan sebelumnya di `.env.local` akan saya gunakan bersama `aws-sdk` di sesi berikutnya untuk membuat _API Upload_.
 
 ### Kendala:
-- *Loading image hydration* dan *performance warning* bisa muncul saat memakai external URL yang belum masuk konfigurasi `next.config.ts`. (Akan diperbaiki otomatis saat kita mulai pakai _custom domain_ R2).
+
+- _Loading image hydration_ dan _performance warning_ bisa muncul saat memakai external URL yang belum masuk konfigurasi `next.config.ts`. (Akan diperbaiki otomatis saat kita mulai pakai _custom domain_ R2).
 
 ### Rekomendasi Lanjutan (Milestone 3):
+
 1. Buat endpoint Next.js API `/api/upload` untuk mengunggah file langsung ke R2.
-2. Buat antarmuka CMS rahasia (di dalam `/dashboard`) agar Anda bisa mengubah konten resume tanpa perlu *query SQL*.
+2. Buat antarmuka CMS rahasia (di dalam `/dashboard`) agar Anda bisa mengubah konten resume tanpa perlu _query SQL_.
 
 ## Sesi 3 - Milestone 3: Halaman Services & AI Companion
 
 ### Tugas yang Dikerjakan:
+
 - [x] Mendefinisikan `types/services.ts` untuk tabel `service_templates`, `live_projects`, `testimonials`, dan `contact_submissions`.
 - [x] Membuat halaman `/services` lengkap dengan UI Glassmorphism.
 - [x] Menerapkan Category Pill Navigation (filter state client-side) dan empty state.
@@ -121,6 +130,7 @@ Untuk sesi selanjutnya (Sesi 3), kita akan menggunakan **Cloudflare R2** sebagai
 - [x] Menambahkan skema SQL tabel Milestone 3 ke dalam dokumentasi ini.
 
 ### Skema Database Milestone 3 (Jalankan di Supabase SQL Editor):
+
 ```sql
 CREATE TABLE service_templates (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -182,6 +192,7 @@ CREATE TABLE admin_config (
 ```
 
 ### Instruksi Setup Manual untuk Kredensial Baru:
+
 Silakan tambahkan environment variables berikut ke dalam file `.env.local` atau ke environment Vercel Anda:
 
 ```env
@@ -192,16 +203,18 @@ NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/your-username
 ```
 
 **Panduan Mendapatkan Kredensial:**
+
 1. **Gemini API Key**: Kunjungi [Google AI Studio](https://aistudio.google.com/), login dengan akun Google, dan generate API Key baru.
 2. **Telegram Bot Token**: Buka aplikasi Telegram, cari `@BotFather`, ketik `/newbot`, ikuti langkahnya, dan copy token HTTP API yang diberikan.
 3. **Telegram Chat ID**: Buat grup Telegram dengan bot yang baru saja Anda buat (atau cukup chat bot tersebut), lalu cari `@userinfobot` atau gunakan web browser: akses `https://api.telegram.org/bot<TOKEN_ANDA>/getUpdates` setelah mengirim pesan ke bot untuk melihat `chat.id` Anda.
 4. **Calendly URL**: Buat akun [Calendly](https://calendly.com/), buat event type, dan copy URL public-nya.
 
-*(Catatan: Jika kredensial di atas kosong, aplikasi akan menggunakan mode mock/fallback yang sudah disiapkan).*
+_(Catatan: Jika kredensial di atas kosong, aplikasi akan menggunakan mode mock/fallback yang sudah disiapkan)._
 
 ## Sesi 4 - Sub-Milestone 4.1: RBAC, Neumorphism, dan R2 Upload
 
 ### Tugas yang Dikerjakan:
+
 - [x] Instalasi `@aws-sdk/client-s3` untuk interaksi dengan Cloudflare R2.
 - [x] Membuat definisi tipe data TypeScript untuk tabel `profiles`, `plans`, `subscriptions`, `cv_projects`, dan `theme_configs` di `types/dashboard.ts`.
 - [x] Menyiapkan SQL script untuk struktur tabel baru.
@@ -294,29 +307,36 @@ CREATE TABLE theme_configs (
 ```
 
 ### Instruksi Setup Role Superadmin (Manual):
+
 Jika Supabase Anda sudah live, Anda harus mengubah role akun Anda sendiri menjadi `superadmin` secara manual agar bisa mengakses halaman `/admin`. Jalankan query ini di SQL editor Supabase:
+
 ```sql
 UPDATE profiles SET role = 'superadmin' WHERE id = 'isi-dengan-user-id-anda-di-tabel-auth.users';
 ```
-*(Catatan: Dalam masa pengembangan ini, saya akan menyiapkan mock role di UI jika belum terhubung dengan Supabase).*
+
+_(Catatan: Dalam masa pengembangan ini, saya akan menyiapkan mock role di UI jika belum terhubung dengan Supabase)._
 
 ## Sesi Tambahan - Fix Gateway & Parallax Background
 
 ### Tugas yang Dikerjakan:
+
 - [x] Memperbaiki `BackgroundParallax.tsx` agar menggunakan tag `<img>` murni dan path yang spesifik ke `cloud1.png`, `cloud2.png`, `cloud3.png`.
 - [x] Mengatur `z-index` background paralaks ke `[-10]` agar tidak menimpa konten `GlassPanel`.
 - [x] Memindahkan route resume dari `/` menjadi `/resume`.
 - [x] Membuat Landing Page Gateway baru di `/` yang memiliki logo, tagline, dan dua tombol CTA (Continue Resume & I'm Member) sesuai wireframe.
-- [x] Memastikan linear gradient global aktif di body dan awan tetap bekerja saat di-*scroll*.
+- [x] Memastikan linear gradient global aktif di body dan awan tetap bekerja saat di-_scroll_.
 
 ### Instruksi Awan (Clouds):
+
 Untuk memastikan background paralaks berjalan di lokal Anda:
+
 1. Pastikan Anda memiliki gambar awan format PNG (dengan background transparan) di `public/assets/clouds/`.
-2. Nama filenya harus: `cloud1.png`, `cloud2.png`, dan `cloud3.png`. (Jika Anda menggunakan format nama lain seperti `cloud-1.png`, mohon *rename* filenya atau *update* referensinya di `app/components/BackgroundParallax.tsx`).
+2. Nama filenya harus: `cloud1.png`, `cloud2.png`, dan `cloud3.png`. (Jika Anda menggunakan format nama lain seperti `cloud-1.png`, mohon _rename_ filenya atau _update_ referensinya di `app/components/BackgroundParallax.tsx`).
 
 ## Sesi Tambahan 2 - Koreksi Background Awan & Glassmorphism
 
 ### Tugas yang Dikerjakan:
+
 - [x] Mengubah nama aset awan menjadi `cloud-pic1.png`, `cloud-pic2.png`, dan `cloud-pic3.png`.
 - [x] Memperbarui file `BackgroundParallax.tsx` agar menggunakan nama-nama file baru tersebut.
 - [x] Mengatur ulang `z-index` background paralaks ke `[-20]` agar awan benar-benar berada di lapisan paling belakang dan tidak mengganggu area interaksi/form.
