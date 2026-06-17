@@ -322,3 +322,9 @@ Untuk memastikan background paralaks berjalan di lokal Anda:
 - [x] Mengatur ulang `z-index` background paralaks ke `[-20]` agar awan benar-benar berada di lapisan paling belakang dan tidak mengganggu area interaksi/form.
 - [x] Memastikan CSS `backdrop-filter: blur(20px)` dan `-webkit-backdrop-filter: blur(20px)` sudah tertulis di `styles/glassmorphism.css` agar efek blur kaca terlihat tembus pandang terhadap background awan.
 - [x] Verifikasi bahwa `BackgroundParallax` hanya di-load di halaman publik: Gateway (`/`), Resume (`/resume`), Services (`/services`), Explore (`/explore`), dan Login (`/login`). Dashboard dan Admin tidak menggunakan ini karena beralih ke tema Neumorphism.
+
+## Sesi Tambahan 3 - Fix Corrupted Image Files
+### Tugas yang Dikerjakan:
+- [x] Mengecek file gambar awan `cloud-pic1.png`, `cloud-pic2.png`, dan `cloud-pic3.png` yang ternyata isinya file HTML (hasil salah download).
+- [x] Membuat script Python untuk men-generate gambar awan transparan secara lokal menggunakan pustaka Pillow (memperbaiki file yang corrupted).
+- [x] Memastikan file baru berformat PNG asli dengan warna dan transparansi yang tepat, sehingga efek parallax dan glassmorphism dapat merender dengan baik.
