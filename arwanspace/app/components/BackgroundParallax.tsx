@@ -41,22 +41,24 @@ export default function BackgroundParallax() {
         const xOffset = mousePos.x * cloud.speedX * 50;
         const myOffset = mousePos.y * cloud.speedY * 50;
 
+        // Update gradient colors to fit light background (using multiply/normal blend instead of screen)
+        // or just rely on image. The original used mix-blend-screen which is for dark bg.
         let gradient = 'bg-white/70';
-        if (cloud.id === 1) gradient = 'bg-gradient-to-tr from-pink-500 to-orange-400';
-        else if (cloud.id === 2) gradient = 'bg-gradient-to-tr from-cyan-400 to-blue-500';
-        else if (cloud.id === 3) gradient = 'bg-gradient-to-tr from-purple-500 to-pink-500';
-        else if (cloud.id === 4) gradient = 'bg-gradient-to-tr from-yellow-400 to-orange-500';
+        if (cloud.id === 1) gradient = 'bg-gradient-to-tr from-pink-200 to-orange-100';
+        else if (cloud.id === 2) gradient = 'bg-gradient-to-tr from-blue-200 to-teal-100';
+        else if (cloud.id === 3) gradient = 'bg-gradient-to-tr from-purple-200 to-pink-100';
+        else if (cloud.id === 4) gradient = 'bg-gradient-to-tr from-yellow-100 to-orange-200';
 
         return (
           <div
             key={cloud.id}
-            className={`absolute rounded-full ${gradient} blur-[40px] mix-blend-screen transition-transform duration-300 ease-out`}
+            className={`absolute rounded-full ${gradient} blur-[60px] mix-blend-multiply transition-transform duration-300 ease-out`}
             style={{
               left: `${cloud.initialX}%`,
               top: `${cloud.initialY}%`,
               width: `${cloud.width}px`,
               height: `${cloud.width}px`,
-              opacity: 0.9,
+              opacity: 0.5, // Reduced opacity for lighter theme
               transform: `translate3d(calc(-50% + ${xOffset}px), calc(-50% + ${yOffset + myOffset}px), 0)`,
             }}
           />

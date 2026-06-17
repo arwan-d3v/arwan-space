@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 @import "../styles/glassmorphism.css";
+@import "../styles/neumorphism.css";
+@import "../styles/claymorphism.css";
+@import "../styles/liquidglass.css";
 
 @theme {
   --font-sans: var(--font-inter);
@@ -9,8 +12,8 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #09090b 0%, #1e1b4b 50%, #0f172a 100%);
+  /* Gradasi: #b7e1fa (biru glacier) -> #fdf6f0 (putih awan hangat) -> #fce4d6 (soft peach) */
+  background: linear-gradient(135deg, #b7e1fa 0%, #fdf6f0 50%, #fce4d6 100%);
   min-height: 100vh;
-  color: #f8fafc;
+  color: #1e293b; /* Dark text for light background */
 }
-@import "../styles/neumorphism.css";

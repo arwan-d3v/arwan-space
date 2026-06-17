@@ -13,7 +13,7 @@ export default function ProjectsSection({ projects, title, id }: { projects: Pro
 
   return (
     <section id={id} className="reveal scroll-mt-24">
-      <h2 className="text-3xl font-bold text-slate-100 mb-8 pl-4 border-l-4 border-gray-400">{title}</h2>
+      <h2 className="text-3xl font-bold text-slate-800 mb-8 pl-4 border-l-4 border-gray-400">{title}</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project) => {
@@ -23,14 +23,12 @@ export default function ProjectsSection({ projects, title, id }: { projects: Pro
           const coverImage = mediaUrls.length > 0 ? mediaUrls[0] : null;
 
           return (
-            <GlassPanel
-              key={project.id}
-              className="flex flex-col h-full overflow-hidden group cursor-pointer hover:-translate-y-1 transition-all duration-300"
-            >
+            <GlassPanel key={project.id} className="p-4">
               <div
-                className="relative h-56 overflow-hidden bg-gray-100"
+                className="clay-card flex flex-col h-full overflow-hidden group cursor-pointer"
                 onClick={() => setSelectedProject(project)}
               >
+                <div className="relative h-56 overflow-hidden bg-gray-100 rounded-t-3xl">
                 {coverImage ? (
                   <img
                     src={coverImage}
@@ -67,46 +65,41 @@ export default function ProjectsSection({ projects, title, id }: { projects: Pro
                 </div>
               </div>
 
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex justify-between items-start mb-3 gap-4">
-                  <h3
-                    className="text-xl font-bold text-slate-100 group-hover:text-[#f7a072] transition-colors"
-                    onClick={() => setSelectedProject(project)}
-                  >
-                    {displayTitle}
-                  </h3>
-                  {(project.liveUrl || project.link) && (
-                    <a
-                      href={project.liveUrl || project.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="text-gray-400 hover:text-[#7ec8e3] transition-colors p-1"
-                      title="Visit live site"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
-                  )}
-                </div>
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex justify-between items-start mb-3 gap-4">
+                    <h3 className="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                      {displayTitle}
+                    </h3>
+                    {(project.liveUrl || project.link) && (
+                      <a
+                        href={project.liveUrl || project.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-slate-500 hover:text-blue-500 transition-colors p-1 clay-button !p-2 !rounded-lg"
+                        title="Visit live site"
+                      >
+                        <ExternalLink size={16} />
+                      </a>
+                    )}
+                  </div>
 
-                <p
-                  className="text-slate-300 text-sm mb-6 flex-grow line-clamp-3"
-                  onClick={() => setSelectedProject(project)}
-                >
-                  {project.description}
-                </p>
+                  <p className="text-slate-600 text-sm mb-6 flex-grow line-clamp-3">
+                    {project.description}
+                  </p>
 
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {techStack.slice(0, 4).map(tech => (
-                    <span key={tech} className="text-xs font-medium text-slate-300 bg-white/50 px-2.5 py-1 rounded-md border border-white/40 shadow-sm">
-                      {tech}
-                    </span>
-                  ))}
-                  {techStack.length > 4 && (
-                    <span className="text-xs font-medium text-gray-500 bg-white/30 px-2.5 py-1 rounded-md">
-                      +{techStack.length - 4}
-                    </span>
-                  )}
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {techStack.slice(0, 4).map(tech => (
+                      <span key={tech} className="text-xs font-medium text-slate-700 clay-button !py-1 !px-2.5 text-xs">
+                        {tech}
+                      </span>
+                    ))}
+                    {techStack.length > 4 && (
+                      <span className="text-xs font-medium text-slate-500 clay-button !py-1 !px-2.5 text-xs">
+                        +{techStack.length - 4}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             </GlassPanel>
