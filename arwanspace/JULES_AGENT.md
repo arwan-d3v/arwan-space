@@ -107,3 +107,94 @@ Untuk sesi selanjutnya (Sesi 3), kita akan menggunakan **Cloudflare R2** sebagai
 ### Rekomendasi Lanjutan (Milestone 3):
 1. Buat endpoint Next.js API `/api/upload` untuk mengunggah file langsung ke R2.
 2. Buat antarmuka CMS rahasia (di dalam `/dashboard`) agar Anda bisa mengubah konten resume tanpa perlu *query SQL*.
+
+## Sesi 3 - Milestone 3: Halaman Services & AI Companion
+
+### Tugas yang Dikerjakan:
+- [x] Mendefinisikan `types/services.ts` untuk tabel `service_templates`, `live_projects`, `testimonials`, dan `contact_submissions`.
+- [x] Membuat halaman `/services` lengkap dengan UI Glassmorphism.
+- [x] Menerapkan Category Pill Navigation (filter state client-side) dan empty state.
+- [x] Membuat fitur AI Companion yang terhubung ke Gemini API (menggunakan native `fetch`) beserta form konversi mini.
+- [x] Membuat komponen Hybrid Booking dengan iframe Calendly dan Manual Form.
+- [x] Mengimplementasikan API Route `/api/ai-chat` dengan mock response (fallback).
+- [x] Mengimplementasikan API Route `/api/submit-contact` untuk insert ke Supabase dan pengiriman notifikasi Telegram.
+- [x] Menambahkan skema SQL tabel Milestone 3 ke dalam dokumentasi ini.
+
+### Skema Database Milestone 3 (Jalankan di Supabase SQL Editor):
+```sql
+CREATE TABLE service_templates (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  category TEXT NOT NULL,          -- 'web-design', 'invitation', 'portfolio', 'saas-umkm', 'education', 'finance', 'home-tools', 'consultation'
+  title TEXT NOT NULL,
+  description TEXT,
+  thumbnail_url TEXT,
+  tech_stack TEXT[],
+  demo_url TEXT,
+  price TEXT,                      -- opsional: 'free', 'Rp xxx', 'Coming Soon'
+  is_template BOOLEAN DEFAULT true,
+  is_active BOOLEAN DEFAULT true,
+  sort_order INT DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE live_projects (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  title TEXT NOT NULL,
+  category TEXT NOT NULL,
+  description TEXT,
+  thumbnail_url TEXT,
+  live_url TEXT,
+  repo_url TEXT,
+  media_urls TEXT[],               -- untuk carousel gambar/video
+  is_active BOOLEAN DEFAULT true,
+  sort_order INT DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE testimonials (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  client_name TEXT NOT NULL,
+  client_photo_url TEXT,
+  client_company TEXT,
+  quote TEXT NOT NULL,
+  rating INT CHECK (rating >= 1 AND rating <= 5),
+  project_id uuid REFERENCES live_projects(id) ON DELETE SET NULL,
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE contact_submissions (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT,
+  email TEXT,
+  telegram_username TEXT,
+  message TEXT,
+  source TEXT DEFAULT 'form',       -- 'form' atau 'ai-companion'
+  is_read BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE admin_config (
+  key TEXT PRIMARY KEY,
+  value JSONB NOT NULL,
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+```
+
+### Instruksi Setup Manual untuk Kredensial Baru:
+Silakan tambahkan environment variables berikut ke dalam file `.env.local` atau ke environment Vercel Anda:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+TELEGRAM_CHAT_ID=your_telegram_chat_id
+NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/your-username
+```
+
+**Panduan Mendapatkan Kredensial:**
+1. **Gemini API Key**: Kunjungi [Google AI Studio](https://aistudio.google.com/), login dengan akun Google, dan generate API Key baru.
+2. **Telegram Bot Token**: Buka aplikasi Telegram, cari `@BotFather`, ketik `/newbot`, ikuti langkahnya, dan copy token HTTP API yang diberikan.
+3. **Telegram Chat ID**: Buat grup Telegram dengan bot yang baru saja Anda buat (atau cukup chat bot tersebut), lalu cari `@userinfobot` atau gunakan web browser: akses `https://api.telegram.org/bot<TOKEN_ANDA>/getUpdates` setelah mengirim pesan ke bot untuk melihat `chat.id` Anda.
+4. **Calendly URL**: Buat akun [Calendly](https://calendly.com/), buat event type, dan copy URL public-nya.
+
+*(Catatan: Jika kredensial di atas kosong, aplikasi akan menggunakan mode mock/fallback yang sudah disiapkan).*
