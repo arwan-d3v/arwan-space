@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
-import { LayoutDashboard, FileText, Palette, User, HelpCircle, Users, Globe } from 'lucide-react';
+import { LayoutDashboard, FileText, Palette, User, HelpCircle, Users, Globe, Activity } from 'lucide-react';
 import NeumButton from '../components/neum/NeumButton';
 import NeumLogoutButton from '../admin/NeumLogoutButton'; // Reuse admin logout button
 import { createClient } from '@/lib/supabase/server';
@@ -20,6 +20,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
     { href: '/dashboard', icon: LayoutDashboard, label: 'Overview' },
     { href: '/dashboard/cv', icon: FileText, label: 'My CVs' },
     { href: '/dashboard/themes', icon: Palette, label: 'Themes' },
+    { href: '/dashboard/trading', icon: Activity, label: 'Trading' },
     { href: '/dashboard/profile', icon: User, label: 'Profile' },
     { href: '/dashboard/support', icon: HelpCircle, label: 'Support' },
   ];

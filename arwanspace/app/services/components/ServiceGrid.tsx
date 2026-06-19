@@ -2,7 +2,8 @@
 
 import { type ServiceTemplate } from '@/types/services';
 import GlassPanel from '@/app/components/GlassPanel';
-import { ExternalLink, Hourglass } from 'lucide-react';
+import { ExternalLink, Hourglass, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export function EmptyState() {
   return (
@@ -69,14 +70,23 @@ export default function ServiceGrid({ items }: { items: ServiceTemplate[] }) {
             </div>
 
             {item.demo_url ? (
-              <a
-                href={item.demo_url}
-                target="_blank"
-                rel="noreferrer"
-                className="w-full py-2.5 bg-gray-800 hover:bg-gray-900 text-white text-sm font-medium rounded-xl flex items-center justify-center gap-2 transition-colors"
-              >
-                Lihat Demo <ExternalLink size={16} />
-              </a>
+               item.demo_url.startsWith('/') ? (
+                   <Link
+                    href={item.demo_url}
+                    className="w-full py-2.5 bg-gray-800 hover:bg-gray-900 text-white text-sm font-medium rounded-xl flex items-center justify-center gap-2 transition-colors"
+                   >
+                     Lihat Detail <ArrowRight size={16} />
+                   </Link>
+               ) : (
+                  <a
+                    href={item.demo_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-full py-2.5 bg-gray-800 hover:bg-gray-900 text-white text-sm font-medium rounded-xl flex items-center justify-center gap-2 transition-colors"
+                  >
+                    Lihat Demo <ExternalLink size={16} />
+                  </a>
+               )
             ) : (
               <button
                 disabled

@@ -357,3 +357,76 @@ Untuk memastikan background paralaks berjalan di lokal Anda:
 - [x] Memperbarui struktur grid (Adaptive Claymorphism) di setiap resume section (`SkillsSection`, `ExperienceSection`, `EducationSection`, `ProjectsSection`, `HobbiesSection`, `SocialSection`, `HeaderSection`) menggunakan `clay-card` sementara pembungkus luarnya mempertahankan efek `GlassPanel`.
 - [x] Menyesuaikan tema cahaya di `globals.css` (latar putih terang) dan mengubah blending mode di `BackgroundParallax.tsx` (menjadi `mix-blend-multiply` dengan opasitas awan yang disesuaikan) agar pas dengan tema modern light.
 - [x] Menjaga sistem tetap responsif serta memastikan halaman lain (non-resume) tidak terpengaruh oleh restrukturisasi komponen Resume.
+
+## Sesi Tambahan 5 - Algorithmic Trade Module
+### Tugas yang Dikerjakan:
+- [x] Mendokumentasikan skema database untuk `trade_signals` (termasuk webhook architecture) dan `user_trading_accounts`.
+- [x] Menginstal `recharts` untuk visualisasi `detail_line` pada sinyal trading.
+- [x] Membuat API rute untuk webhook (POST `/api/trading/signals`) dengan validasi `x-api-key`, dan fetching data (GET `/api/trading/signals` & `/api/trading/account`).
+- [x] Memperbarui halaman `/services` untuk memasukkan Algorithmic Trade di kategori Finance, serta membuat landing page khusus di `/services/algorithmic-trade` (menggunakan gaya Glassmorphism, Liquid Glass Navbar, dan Claymorphism).
+- [x] Membangun Dashboard Trading di `/dashboard/trading` (Neumorphism layout) dengan fitur live polling (10 detik) menggunakan `setInterval` dan status eksekusi MT5.
+- [x] Membangun Admin Command Center untuk mengelola sinyal dan akun pengguna di `/admin/trading`.
+
+### Arsitektur Alur Sinyal Algorithmic Trade
+
+Sinyal trading diproses secara terotomatisasi tanpa input manual admin:
+1. **TradingView**: Memicu peringatan berdasarkan indikator/strategi dan mengirim webhook.
+2. **VPS Server (Python Script)**: Menangkap webhook dari TradingView, memproses/memformat data, dan mengirimkannya ke endpoint Arwan'space.
+3. **Arwan'space API**: Menerima request `POST /api/trading/signals` yang divalidasi dengan header `x-api-key: <TRADING_API_KEY>`. Sinyal disimpan ke tabel Supabase `trade_signals`.
+4. **Dashboard**: Menarik data sinyal secara live (polling tiap 10 detik) untuk ditampilkan kepada pengguna.
+
+### Panduan Setup Webhook & VPS
+
+Untuk script Python (di VPS) yang akan mengirim data:
+- **Endpoint URL:** `https://domain-anda.com/api/trading/signals`
+- **Headers:** `{"x-api-key": "isi_dengan_nilai_TRADING_API_KEY"}`
+- **Payload Format (JSON):**
+  ```json
+  {
+    "pair": "BTC/USD",
+    "signal_type": "buy",
+    "price": 68500.50,
+    "confidence": 0.87,
+    "description": "EMA cross + RSI oversold",
+    "execution_status": "pending",
+    "detail_line": [
+       {"time": "10:00", "value": 68000},
+       {"time": "10:05", "value": 68500}
+    ]
+  }
+  ```
+
+Tambahkan environment variable ini di `.env.local` dan Vercel:
+```env
+TRADING_API_KEY=rahasia_api_key_anda_123
+```
+
+### Skema Database Milestone 5 (Algorithmic Trade):
+
+Jalankan di Supabase SQL Editor:
+
+```sql
+-- Sinyal trading (dengan execution_status dan detail_line)
+CREATE TABLE trade_signals (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  pair TEXT NOT NULL,              -- misal BTC/USD, EUR/USD
+  signal_type TEXT CHECK (signal_type IN ('buy', 'sell', 'hold')),
+  price DECIMAL(18,8),
+  timestamp TIMESTAMPTZ DEFAULT NOW(),
+  confidence DECIMAL(3,2),        -- 0.00 - 1.00
+  description TEXT,
+  execution_status TEXT DEFAULT 'pending' CHECK (execution_status IN ('pending', 'sent_to_mt5', 'closed')),
+  detail_line JSONB,               -- untuk data chart (opsional)
+  created_by uuid REFERENCES auth.users(id)
+);
+
+-- Akun trading user (untuk dashboard)
+CREATE TABLE user_trading_accounts (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE UNIQUE,
+  balance DECIMAL(18,2) DEFAULT 0,
+  profit_loss DECIMAL(18,2) DEFAULT 0,
+  open_positions INT DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+```
