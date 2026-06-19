@@ -17,7 +17,7 @@ export default function LiquidNavbar() {
             <div className="absolute top-0 left-0 right-0 h-1/2 bg-white/40 rounded-t-full"></div>
             A
           </div>
-          <span className="font-semibold text-slate-800 tracking-tight group-hover:text-blue-600 transition-colors">Arwan'space</span>
+          <span className="font-semibold text-slate-800 tracking-tight group-hover:text-blue-600 transition-colors">Arwan&apos;space</span>
         </Link>
 
         {/* Desktop Links */}

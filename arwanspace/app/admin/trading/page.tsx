@@ -24,7 +24,7 @@ export default function AdminTrading() {
   }
 
   useEffect(() => {
-    fetchSignals();
+    setTimeout(fetchSignals, 0);
   }, []);
 
   const handleDelete = () => {
