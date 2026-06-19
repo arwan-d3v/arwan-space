@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
-import { LayoutDashboard, Users, CreditCard, Layers, Image as ImageIcon, MessageSquare, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, Users, CreditCard, Layers, Image as ImageIcon, MessageSquare, Settings, LogOut, Activity } from 'lucide-react';
 import NeumButton from '../components/neum/NeumButton';
 import NeumLogoutButton from './NeumLogoutButton';
 
@@ -8,6 +8,7 @@ const ADMIN_MENU = [
   { href: '/admin', icon: LayoutDashboard, label: 'Dashboard' },
   { href: '/admin/users', icon: Users, label: 'User Mgmt' },
   { href: '/admin/subscriptions', icon: CreditCard, label: 'Subscriptions' },
+  { href: '/admin/trading', icon: Activity, label: 'Algorithmic Trade' },
   { href: '/admin/content', icon: Layers, label: 'Content' },
   { href: '/admin/plans', icon: Layers, label: 'Plans' },
   { href: '/admin/media', icon: ImageIcon, label: 'Media Library' },

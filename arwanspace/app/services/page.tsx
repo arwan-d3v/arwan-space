@@ -54,8 +54,20 @@ const dummyTemplates: ServiceTemplate[] = [
     is_template: false,
     is_active: true,
     sort_order: 4
+  },
+  {
+    id: "tpl-5",
+    category: "finance",
+    title: "Algorithmic Trade",
+    description: "Live trade signals & real-time market analysis untuk trading cerdas. Dukungan eksekusi MT5.",
+    thumbnail_url: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80",
+    tech_stack: ["Trading", "AI", "Real-time"],
+    demo_url: "/services/algorithmic-trade",
+    price: "Subscription",
+    is_template: false,
+    is_active: true,
+    sort_order: 5
   }
-  // Notice we purposely left some categories empty (like 'education', 'finance') to test EmptyState
 ];
 
 const dummyLiveProjects: LiveProject[] = [];
@@ -93,7 +105,11 @@ export default async function ServicesPage() {
       .order('sort_order', { ascending: true });
 
     if (dbTemplates && dbTemplates.length > 0 && !tplErr) {
+      // Merge DB templates and our dummy Algorithmic trade if it doesn't exist in DB yet
       templates = dbTemplates as ServiceTemplate[];
+      if (!templates.some(t => t.category === 'finance' && t.title === 'Algorithmic Trade')) {
+          templates.push(dummyTemplates.find(t => t.id === 'tpl-5')!);
+      }
     }
 
     const { data: dbTestimonials, error: testErr } = await supabase
@@ -104,8 +120,6 @@ export default async function ServicesPage() {
     if (dbTestimonials && dbTestimonials.length > 0 && !testErr) {
       testimonials = dbTestimonials as Testimonial[];
     }
-
-    // Similarly fetch liveProjects if needed for another section later
 
   } catch (e) {
     console.warn("Failed to fetch from Supabase, using dummy data:", e);
